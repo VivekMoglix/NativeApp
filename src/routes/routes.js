@@ -63,7 +63,7 @@ export default function Routes() {
           <Tab.Screen
             options={{
               tabBarIcon: () => {
-                return <Icon name="home" size={18} />;
+                return <Icon name="home" color={'#055600'} size={24} />;
               },
             }}
             name="Home"
@@ -72,7 +72,9 @@ export default function Routes() {
           <Tab.Screen
             options={{
               tabBarIcon: () => {
-                return <Icon name="account-circle" size={18} />;
+                return (
+                  <Icon name="account-circle" color={'#055600'} size={24} />
+                );
               },
             }}
             name="My Profile"
