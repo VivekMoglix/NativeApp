@@ -10,12 +10,16 @@ import {
   TouchableOpacity,
   Keyboard,
 } from 'react-native';
-import {LoginStyles} from '../styles/LoginStyles';
+import {LoginStyles} from './styles';
 import {useDispatch, useSelector} from 'react-redux';
-import {loggedInUser, setLoading, setError} from '../redux/actions/authActions';
+import {
+  loggedInUser,
+  setLoading,
+  setError,
+} from '../../redux/actions/authActions';
 import Icon from 'react-native-vector-icons/Entypo';
 import axios from 'axios';
-import Loader from './Loader';
+import Loader from '../../components/Loader';
 
 export default function LoginView() {
   const dispatch = useDispatch();

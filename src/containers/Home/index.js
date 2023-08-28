@@ -1,13 +1,17 @@
 import axios from 'axios';
 import {useEffect, useMemo, useState} from 'react';
-import {FlatList, Text, TextInput, View} from 'react-native';
-import Posts from './Posts';
+import {ActivityIndicator, FlatList, Text, TextInput, View} from 'react-native';
+import Posts from '../../components/Posts';
 import {useDispatch, useSelector} from 'react-redux';
-import {setPosts} from '../redux/actions/postActions';
+import {setPosts} from '../../redux/actions/postActions';
 import {Dropdown} from 'react-native-element-dropdown';
-import Loader from './Loader';
-import Pagination from './Pagination';
-import {setPostsPerPage, setSearchText} from '../redux/actions/homeActions';
+import Pagination from '../../components/Pagination';
+import {
+  setCurrentPage,
+  setPostsPerPage,
+  setSearchText,
+} from '../../redux/actions/homeActions';
+import HomeStyles from './styles';
 
 const paginationData = [
   {label: '10', value: 10},
@@ -60,31 +64,12 @@ export default function HomeView() {
 
   return (
     <>
-      {data.length > 0 && isLoading ? (
-        <Loader />
-      ) : (
-        <View style={{backgroundColor: '#055600', flex: 1}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              width: '100%',
-              backgroundColor: '#F4FBF4',
-              alignItems: 'center',
-              paddingVertical: 4,
-              paddingHorizontal: 15,
-              borderWidth: 1,
-              borderColor: '#979797',
-            }}>
+      {data.length > 0 && (
+        <View style={HomeStyles.container}>
+          <View style={HomeStyles.header}>
             <View style={{width: '100%'}}>
               <TextInput
-                style={{
-                  borderWidth: 1,
-                  borderColor: '#055600',
-                  paddingHorizontal: 10,
-                  color: '#055600',
-                  width: '60%',
-                  borderRadius: 6,
-                }}
+                style={HomeStyles.searchInput}
                 value={searchText}
                 onChangeText={handleInputChange}
                 placeholderTextColor={'#055600'}
@@ -107,19 +92,28 @@ export default function HomeView() {
                 onBlur={() => setIsFocus(false)}
                 onChange={item => {
                   dispatch(setPostsPerPage(item.value));
+                  dispatch(setCurrentPage(1));
                   setIsFocus(false);
                 }}
               />
             </View>
           </View>
-          <FlatList
-            style={{paddingHorizontal: 15, marginTop: 10}}
-            showsVerticalScrollIndicator={false}
-            data={filteredData}
-            renderItem={({item}) => {
-              return <Posts title={item.title} body={item.description} />;
-            }}
-          />
+          {isLoading ? (
+            <ActivityIndicator
+              style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+              color={'#F4FBF4'}
+              size="large"
+            />
+          ) : (
+            <FlatList
+              style={{paddingHorizontal: 15, marginTop: 10}}
+              showsVerticalScrollIndicator={false}
+              data={filteredData}
+              renderItem={({item}) => {
+                return <Posts title={item.title} body={item.description} />;
+              }}
+            />
+          )}
           <View style={{marginTop: 'auto', width: '100%'}}>
             <Pagination />
           </View>

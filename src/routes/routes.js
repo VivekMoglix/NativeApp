@@ -1,23 +1,20 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import LoginView from '../components/LoginView';
-import HomeView from '../components/HomeView';
-import ProfileView from '../components/ProfileView';
+import LoginView from '../containers/Login';
+import HomeView from '../containers/Home';
+import ProfileView from '../containers/Profile';
 import {useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect, useState} from 'react';
 import {loggedInUser} from '../redux/actions/authActions';
 import {ActivityIndicator, View} from 'react-native';
+import Loader from '../components/Loader';
 
 const Tab = createBottomTabNavigator();
 
 function SplashScreen() {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <ActivityIndicator size="large" color="#055600" />
-    </View>
-  );
+  return <Loader />;
 }
 
 export default function Routes() {
