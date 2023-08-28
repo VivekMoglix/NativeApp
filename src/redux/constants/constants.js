@@ -1,0 +1,14 @@
+export const SET_LOADING = 'LOADING_FALSE';
+export const SET_LOADING_TRUE = 'SET_LOADING_FALSE';
+export const SET_LOADING_FALSE = 'SET_LOADING_TRUE';
+export const SET_LOGGED_IN = 'SET_LOGGED_IN';
+export const SET_LOGGED_IN_TRUE = 'SET_LOGGED_IN_TRUE';
+export const SET_LOGGED_IN_FALSE = 'SET_LOGGED_IN_FALSE';
+export const LOGGED_IN_USER = 'LOGGED_IN_USER';
+export const SET_LOGGED_IN_USER = 'SET_LOGGED_IN_USER';
+export const POSTS = 'POSTS';
+export const POSTS_SET = 'POSTS_SET';
+export const POSTS_REMOVE = 'POSTS_REMOVE';
+export const LOGOUT = 'LOGOUT';
+export const SET_ERROR = 'SET_ERROR';
+export const SET_ERROR_MSG = 'SET_ERROR_MSG';
